@@ -47,17 +47,175 @@ The API will have the following endpoints:
 - `PUT /api/products/:id`: Update a product
 - `DELETE /api/products/:id`: Delete a product
 
-## Submission
+# Product API
 
-Your work will be automatically submitted when you push to your GitHub Classroom repository. Make sure to:
+A simple Express.js REST API for managing products.
 
-1. Complete all the required API endpoints
-2. Implement the middleware and error handling
-3. Document your API in the README.md
-4. Include examples of requests and responses
+## Getting Started
 
-## Resources
+### Prerequisites
 
-- [Express.js Documentation](https://expressjs.com/)
-- [RESTful API Design Best Practices](https://restfulapi.net/)
-- [HTTP Status Codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status) 
+- [Node.js](https://nodejs.org/) (v14 or higher recommended)
+- [npm](https://www.npmjs.com/)
+
+### Installation
+
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/PLP-MERN-Stack-Development/week-2-express-js-assignment-x88-code.git
+   cd week-2-express-js-assignment-x88-code
+   ```
+
+2. Install dependencies:
+   ```sh
+   npm install
+   ```
+
+3. (Optional) Copy the example environment file and edit as needed:
+   ```sh
+   copy .env.example .env
+   ```
+
+### Running the Server
+
+```sh
+npm start
+```
+
+The server will start on [http://localhost:3000](http://localhost:3000) by default.
+
+---
+
+## API Documentation
+
+### Root
+
+- **GET /**  
+  Returns a welcome message.
+
+---
+
+### Products
+
+#### Get all products
+
+- **GET /api/products**
+- **Response:**
+  ```json
+  [
+    {
+      "id": "1",
+      "name": "Laptop",
+      "description": "High-performance laptop with 16GB RAM",
+      "price": 1200,
+      "category": "electronics",
+      "inStock": true
+    },
+    ...
+  ]
+  ```
+
+#### Get a product by ID
+
+- **GET /api/products/:id**
+- **Response (200):**
+  ```json
+  {
+    "id": "1",
+    "name": "Laptop",
+    "description": "High-performance laptop with 16GB RAM",
+    "price": 1200,
+    "category": "electronics",
+    "inStock": true
+  }
+  ```
+- **Response (404):**
+  ```json
+  { "message": "Product not found" }
+  ```
+
+#### Create a new product
+
+- **POST /api/products**
+- **Request Body:**
+  ```json
+  {
+    "name": "Tablet",
+    "description": "10-inch display tablet",
+    "price": 300,
+    "category": "electronics",
+    "inStock": true
+  }
+  ```
+- **Response (201):**
+  ```json
+  {
+    "id": "generated-uuid",
+    "name": "Tablet",
+    "description": "10-inch display tablet",
+    "price": 300,
+    "category": "electronics",
+    "inStock": true
+  }
+  ```
+- **Response (400):**
+  ```json
+  { "message": "Name and price are required" }
+  ```
+
+#### Update a product
+
+- **PUT /api/products/:id**
+- **Request Body:** (any fields to update)
+  ```json
+  {
+    "price": 350,
+    "inStock": false
+  }
+  ```
+- **Response (200):**
+  ```json
+  {
+    "id": "1",
+    "name": "Laptop",
+    "description": "High-performance laptop with 16GB RAM",
+    "price": 350,
+    "category": "electronics",
+    "inStock": false
+  }
+  ```
+- **Response (404):**
+  ```json
+  { "message": "Product not found" }
+  ```
+
+#### Delete a product
+
+- **DELETE /api/products/:id**
+- **Response (200):**
+  ```json
+  {
+    "id": "1",
+    "name": "Laptop",
+    "description": "High-performance laptop with 16GB RAM",
+    "price": 1200,
+    "category": "electronics",
+    "inStock": true
+  }
+  ```
+- **Response (404):**
+  ```json
+  { "message": "Product not found" }
+  ```
+
+---
+
+## Environment Variables
+
+See `.env.example` for required variables.
+
+---
+
+## Example .env File
+
+See below for the `.env.example` file.
